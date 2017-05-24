@@ -65,6 +65,7 @@ class test extends App {
 		v.uniform.setFloat1("passedTime", time.elapsedTime);
 		//fb.bind();
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+		GL11.glClearColor(0f, 0f, 1f, 1f);
 		v.bind();
 		vao.draw(Renderer.drawModes.TRIANGLE_STRIP, 0, 3);
 		//fb.unbind();
