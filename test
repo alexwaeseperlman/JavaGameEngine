@@ -1,0 +1,1 @@
+gradle build && ./compile && java -cp ".:lib/*:build/libs/GameEngine.jar" test

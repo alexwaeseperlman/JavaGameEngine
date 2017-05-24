@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+        resources {
+            srcDirs = ['resources']
+        }
+    }
+}
+/*
+jar {
+    into ('/')
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+//*/
+
+dependencies {
+	compile fileTree(dir: 'lib', include: ['*.jar'])
+	runtime fileTree(dir: 'lib', include: ['*.jar'])
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+}

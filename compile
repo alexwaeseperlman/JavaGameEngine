@@ -1,0 +1,1 @@
+javac test.java -cp ".:lib/*:build/libs/GameEngine.jar"
