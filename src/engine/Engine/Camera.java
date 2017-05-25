@@ -1,12 +1,23 @@
 package engine.Engine;
 
 import org.joml.*;
-/*
+
 public class Camera {
+
+	/*
+	
+	[
+		1, 0, 0, 0
+		0, 1, 0, 0
+		0, 0, 0.25, 1
+		0, 0, 0, 0
+	]
+	
+	*/
 
 	public static Camera perspective(float width, float height, float fov, float near, float far) {
 		Camera c = new Camera();
-		c.projection.perspective(fov, width / height, near, far);
+		c.projection.setPerspective(fov, width / height, near, far);
 		return c;
 	}
 
@@ -16,7 +27,13 @@ public class Camera {
 
 	public static Camera ortho(float width, float height, float near, float far) {
 		Camera c = new Camera();
-		c.projection.ortho(0, width, near, 0, near, far);
+		c.projection.setOrtho(0, width, height, 0, near, far);
+		return c;
+	}
+
+	public static Camera ortho(float width, float height) {
+		Camera c = new Camera();
+		c.projection.setOrtho2D(0, width, height, 0);
 		return c;
 	}
 
@@ -62,15 +79,24 @@ public class Camera {
 		view.translate(x, y, 0);
 	}
 
-	public void translate(Vector2f position);
+	public void translate(Vector2f position) {
+		view.translate(new Vector3f(position, 0));
+	}
 
-	public void rotate(float z);
+	public void rotate(float z) {
+		view.rotateZ(z);
+	}
 
-	public void rotate(Vector3f rot);
+	public void rotate(Vector3f rot) {
+		view.rotateXYZ(rot);
+	}
 
-	public void rotate(float x, float y, float z);
+	public void rotate(float x, float y, float z) {
+		view.rotateXYZ(x, y, z);
+	}
 
-	public void rotate(Quaternoinf rot);
+	public void rotate(Quaternionf rot) {
+		view.rotate(rot);
+	}
 
 }
-*/
