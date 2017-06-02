@@ -2,9 +2,9 @@ package engine.Graphics;
 
 import org.lwjgl.opengl.*;
 
-import engine.Engine.Cleanable;
+import engine.Engine.Disposable;
 
-public class VAO implements Cleanable {
+public class VAO implements Disposable {
 	private VBO[] vbos;
 	public final int id;
 
@@ -20,7 +20,7 @@ public class VAO implements Cleanable {
 		}
 	}
 
-	public void cleanUp() {
+	public void dispose() {
 		GL30.glDeleteVertexArrays(id);
 	}
 

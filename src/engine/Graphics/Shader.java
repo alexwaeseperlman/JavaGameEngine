@@ -4,27 +4,35 @@ import java.io.IOException;
 
 import org.lwjgl.opengl.*;
 
-import engine.Engine.Cleanable;
+import engine.Engine.Disposable;
 import engine.Utils.*;
-public class Shader implements Cleanable {
+
+public class Shader implements Disposable {
 	public Uniform uniform;
 	public Attribute attribute;
 	private String source;
 	private int vertexID;
+
 	public int getVertexID() {
 		return vertexID;
 	}
+
 	private int fragmentID;
+
 	public int getFragmentID() {
 		return fragmentID;
 	}
+
 	private int shaderID;
+
 	public int getID() {
 		return shaderID;
 	}
+
 	public String getSource() {
 		return source;
 	}
+
 	public Shader(String vert, String frag) {
 		uniform = new Uniform(this);
 		attribute = new Attribute(this);
@@ -51,11 +59,11 @@ public class Shader implements Cleanable {
 
 		GL20.glAttachShader(shaderID, vertexID);
 		GL20.glAttachShader(shaderID, fragmentID);
-		
+
 		GL20.glLinkProgram(shaderID);
 	}
 
-	public void cleanUp() {
+	public void dispose() {
 		GL20.glDetachShader(shaderID, vertexID);
 		GL20.glDetachShader(shaderID, fragmentID);
 		GL20.glDeleteProgram(shaderID);
@@ -66,8 +74,7 @@ public class Shader implements Cleanable {
 	public static Shader fromFile(String vert, String frag) {
 		try {
 			return new Shader(IO.loadFile(vert), IO.loadFile(frag));
-		}
-		catch (IOException exception) {
+		} catch (IOException exception) {
 			System.err.println("Could not find file");
 			return new Shader("", "");
 		}
