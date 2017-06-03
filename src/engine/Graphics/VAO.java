@@ -1,5 +1,7 @@
 package engine.Graphics;
 
+import java.nio.IntBuffer;
+
 import org.lwjgl.opengl.*;
 
 import engine.Engine.Disposable;
@@ -31,5 +33,10 @@ public class VAO implements Disposable {
 	public void draw(Renderer.drawModes drawMode, int begin, int end) {
 		bind();
 		GL11.glDrawArrays(drawMode.mode, begin, end);
+	}
+
+	public void drawElements(Renderer.drawModes drawMode, int[] elements) {
+		bind();
+		GL11.glDrawElements(drawMode.mode, IntBuffer.wrap(elements));
 	}
 }
